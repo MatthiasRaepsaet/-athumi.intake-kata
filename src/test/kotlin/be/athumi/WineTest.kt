@@ -129,4 +129,22 @@ class WineTest {
         assertThat(shop.items[0].price == 0).isTrue()
     }
 
+    @Test
+    fun `negative event wine is illegal`() {
+        val shop = WineShop(listOf(Wine("Event wine", -10, 0)))
+
+        shop.next()
+
+        assertThat(shop.items[0].price == 0).isTrue()
+    }
+
+    @Test
+    fun `negative conservato wine is illegal`() {
+        val shop = WineShop(listOf(Wine("Conservato wine", -10, 0)))
+
+        shop.next()
+
+        assertThat(shop.items[0].price == 0).isTrue()
+    }
+
 }
