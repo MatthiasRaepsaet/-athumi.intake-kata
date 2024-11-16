@@ -4,7 +4,6 @@ import be.athumi.service.*
 
 class WineShop(var items: List<Wine>) {
     fun next() {
-        // Wine Shop logic
         for (i in items.indices) {
             when {
                 isNonConsumable(items[i]) -> NonConsumableWineStrategy().assessWine(items[i])
