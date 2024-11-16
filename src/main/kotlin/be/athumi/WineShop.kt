@@ -10,6 +10,7 @@ class WineShop(var items: List<Wine>) {
                 isNonConsumable(items[i]) -> NonConsumableWineStrategy().assessWine(items[i])
                 isEventWine(items[i]) -> EventWineStrategy().assessWine(items[i])
                 isConservatoWine(items[i]) -> ConservatoWineStrategy().assessWine(items[i])
+                isEcoWine(items[i]) -> EcoWineStrategy().assessWine(items[i])
                 else -> CellarWineStrategy().assessWine(items[i])
             }
         }
@@ -25,6 +26,10 @@ class WineShop(var items: List<Wine>) {
 
     fun isConservatoWine(wine: Wine) : Boolean{
         return wine.name.contains("Conservato");
+    }
+
+    fun isEcoWine(wine: Wine) : Boolean{
+        return wine.name.startsWith("Eco")
     }
 
 }
