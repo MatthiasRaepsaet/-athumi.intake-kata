@@ -148,6 +148,15 @@ class WineTest {
     }
 
     @Test
+    fun `negative eco wine is illegal`() {
+        val shop = WineShop(listOf(Wine("Eco wine", -10, 0)))
+
+        shop.next()
+
+        assertThat(shop.items[0].price == 0).isTrue()
+    }
+
+    @Test
     fun `eco wine expires to zero`() {
         val shop = WineShop(listOf(Wine("Eco wine", 6, 3)))
 
