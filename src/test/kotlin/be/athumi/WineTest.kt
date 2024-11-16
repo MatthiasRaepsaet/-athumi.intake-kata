@@ -47,7 +47,7 @@ class WineTest {
         assertThat(shop.items[5].price == 23 && shop.items[5].expiresInYears == 12).isTrue()
         assertThat(shop.items[6].price == 52 && shop.items[6].expiresInYears == 7).isTrue()
         assertThat(shop.items[7].price == 55 && shop.items[7].expiresInYears == 2).isTrue()
-        assertThat(shop.items[8].price == 3 && shop.items[8].expiresInYears == 0).isTrue()
+        assertThat(shop.items[8].price == 0 && shop.items[8].expiresInYears == 0).isTrue()
     }
 
     @Test
@@ -77,7 +77,7 @@ class WineTest {
         assertThat(shop.items[5].price == 21 && shop.items[5].expiresInYears == 14).isTrue()
         assertThat(shop.items[6].price == 50 && shop.items[6].expiresInYears == 9).isTrue()
         assertThat(shop.items[7].price == 51 && shop.items[7].expiresInYears == 4).isTrue()
-        assertThat(shop.items[8].price == 5 && shop.items[8].expiresInYears == 2).isTrue()
+        assertThat(shop.items[8].price == 4 && shop.items[8].expiresInYears == 2).isTrue()
     }
 
     @Test
@@ -141,6 +141,23 @@ class WineTest {
     @Test
     fun `negative conservato wine is illegal`() {
         val shop = WineShop(listOf(Wine("Conservato wine", -10, 0)))
+
+        shop.next()
+
+        assertThat(shop.items[0].price == 0).isTrue()
+    }
+
+    @Test
+    fun `eco wine expires to zero`() {
+        val shop = WineShop(listOf(Wine("Eco wine", 6, 3)))
+
+        shop.next()
+
+        assertThat(shop.items[0].price == 4).isTrue()
+
+        shop.next()
+
+        assertThat(shop.items[0].price == 2).isTrue()
 
         shop.next()
 
